@@ -1,1 +1,3 @@
 *.pyc
+production_settings.py
+production_settings_.py
