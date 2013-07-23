@@ -1,7 +1,7 @@
 # Django settings for HowManyPeopleFitHere project.
 import os
 def project(path):
-    return os.path.join(__file__, '../..', path)
+    return os.path.normpath(os.path.join(__file__, '../..', path))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
