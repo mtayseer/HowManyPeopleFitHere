@@ -25,6 +25,11 @@
       body 
       { 
         font-family: "Gentium Basic", Gentium, Palatino, Georgia, serial; 
+        padding-top: 60px; padding-bottom: 40px;
+      }
+      .hero-unit
+      {
+        padding: 38px;
       }
       .hero-unit h1 
       { 
@@ -44,15 +49,10 @@
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-              <li>
-                <a href="http://mtayseer.net">By Mohammad Tayseer</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="active"><a href=".">Home</a></li>
+              <li><a href="http://mtayseer.net">By Mohammad Tayseer</a></li>
               <li><a href="https://github.com/mtayseer/HowManyPeopleFitHere">Github</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -60,29 +60,37 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="hero-unit">
-        <div class="row">
-          <h1>How many people fit here?</h1>
-          <div class="span10">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Zones</li>
+              {% for area in areas %}
+                <li><a href="/{{ area.id }}" {% if selected_area.id == area.id %} class="active" {% endif %}>{{ area.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>How many people fit here?</h1>
             <p>
-              How many people can fit in Tahrir Square? Raba'a? Giza? Change the area below & find out how many people can fit in it.
+              How many people can fit in <a href="/1/">Tahrir Square</a>? <a href="/3/">Raba'a</a>? Giza? Change the area below & find out how many people can fit in it.
             </p>
             <p>Area below is almost <b><span id="area"></span> km<sup>2</sup></b>.</p>
             <p>Assuming that a person occupies <input type="number" id="personArea" min="0.01" step="any" value="0.16" /> m<sup>2</sup>, 
                then approximately <b><span id="numOfPeople"></span> people</b> can fit here.
             </p>
+          <div class="row-fluid">
+            <div class="span11">
+              {{ map.area }}
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="span11">
-            {{ map.area }}
+
           </div>
         </div>
       </div>
-      <footer>
-        <p></p>
-      </footer>
     </div> <!-- /container -->
     <script type="text/javascript">
       function calcAreaAndPopulation() { 

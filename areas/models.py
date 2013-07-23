@@ -7,6 +7,7 @@ class AreaManager(models.Manager):
 class Area(models.Model):
     name = models.CharField(max_length=500)
     area = models.MultiPolygonField(geography=True, srid=4326)
+    active = models.BooleanField(default=True)
 
     def area_sq_km(self):
         return self._area_sq_km / 10 ** 6
@@ -16,6 +17,9 @@ class Area(models.Model):
         return '{:,.0f}'.format(self.area_sq_km() * 10 ** 6 / 0.16)
 
     objects = AreaManager()
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return self.name
