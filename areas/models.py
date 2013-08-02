@@ -14,7 +14,7 @@ class Area(models.Model):
     area_sq_km.short_description = 'Area (km2)'
 
     def people_in_area(self):
-        return '{:,.0f}'.format(self.area_sq_km() * 10 ** 6 / 0.16)
+        return '{:,.0f}'.format(self.area_sq_km() * 10 ** 6 / 0.25)
 
     objects = AreaManager()
 
